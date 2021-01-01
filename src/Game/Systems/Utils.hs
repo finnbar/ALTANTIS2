@@ -7,30 +7,28 @@ import Data.Text (Text)
 import GHC.Conc
 import qualified Data.Map.Strict as Map
 import Control.Monad.Trans.Class
-import Control.Monad.Trans.Reader
+import Control.Monad.Reader
+import Control.Monad.Trans.Except
 
-getTeam :: ReaderT CommandEnv STM (Either Error Text)
+toEither :: Monad m => b -> Maybe a -> ExceptT b m a
+toEither err Nothing  = throwE err
+toEither _   (Just x) = return x
+
+-- TODO: move command framework from Types.hs to its own file, also split up Types.hs in a nicer way.
+-- in doing so, probably nick MonadSTM from concurrency
+
+getTeam :: Command Text
 getTeam = do
     gamestate <- asks gs
     u <- asks $ messageAuthor . message
-    lift $ do
-        usermap <- readTVar (users gamestate)
-        case Map.lookup u usermap of
-            Nothing -> return $ Left "User isn't attributed to a team!"
-            Just t -> return $ Right t
+    usermap <- lift . lift $ readTVar (users gamestate)
+    toEither "User isn't attributed to a team!" $ Map.lookup u usermap
 
-getSub :: Text -> ReaderT CommandEnv STM (Either Error Submarine)
+getSub :: Text -> Command Submarine
 getSub t = do
     gamestate <- asks gs
-    lift $ do
-        submarines <- readTVar (subs gamestate)
-        case Map.lookup t submarines of
-            Nothing -> return $ Left "That team doesn't have a submarine!"
-            Just sub -> return $ Right sub
+    submarines <- lift . lift $ readTVar (subs gamestate)
+    toEither "That team doesn't have a submarine!" $ Map.lookup t submarines
 
-getYourSub :: ReaderT CommandEnv STM (Either Error Submarine)
-getYourSub = do
-    t <- getTeam
-    case t of
-        Left err -> return $ Left err
-        Right tm -> getSub tm
+getYourSub :: Command Submarine
+getYourSub = getTeam >>= getSub

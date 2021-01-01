@@ -30,6 +30,7 @@ dependencies:
 - transformers
 - containers
 - stm
+- mtl
 
 library:
   source-dirs: src

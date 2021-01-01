@@ -48,6 +48,7 @@ extra-deps:
 - vector-0.12.1.2
 - containers-0.6.2.1
 - stm-2.5.0.0
+- mtl-2.2.2
 
 # Override default flag values for local packages and extra-deps
 # flags: {}

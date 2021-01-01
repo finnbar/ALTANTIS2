@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: f460f1fb5eebb3a136493253ed305d15d9ea7a805f644189c49341c222303887
+-- hash: 074eec5c98324be763cfd3644a08d4007a9a6dedea3dcc1a3afe3765662f386d
 
 name:           ALTANTIS2
 version:        0.1.0.0
@@ -47,6 +47,7 @@ library
     , discord-haskell
     , emoji
     , load-env
+    , mtl
     , stm
     , text
     , transformers
@@ -68,6 +69,7 @@ executable ALTANTIS2-exe
     , discord-haskell
     , emoji
     , load-env
+    , mtl
     , stm
     , text
     , transformers
@@ -90,6 +92,7 @@ test-suite ALTANTIS2-test
     , discord-haskell
     , emoji
     , load-env
+    , mtl
     , stm
     , text
     , transformers

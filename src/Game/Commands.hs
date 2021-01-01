@@ -12,11 +12,12 @@ import GHC.Conc
 import Control.Monad.IO.Class
 import Data.Text (Text)
 import Control.Monad.Trans.Reader
+import Control.Monad.Trans.Except
 
-runCommand :: Message -> GameState -> Command -> DiscordHandler ()
+runCommand :: Message -> GameState -> Command Text -> DiscordHandler ()
 runCommand m gs comm = do
     let env = CommandEnv gs m
-    let stm = runReaderT comm env
+    let stm = runReaderT (runExceptT comm) env
     res <- liftIO $ atomically stm
     case res of
         Left err -> do
@@ -26,7 +27,3 @@ runCommand m gs comm = do
             _ <- reactToCommand m ":white_check_mark:"
             sendMessage m out
     pure ()
-
--- TODO: actually make this find the relevant submariner
-getTeam :: User -> Maybe Text
-getTeam = const Nothing

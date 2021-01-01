@@ -10,9 +10,13 @@ import Game.Systems.Movement
 
 import Discord
 import Discord.Types
+import Data.Text (Text)
+
+emptyText :: Command () -> Command Text
+emptyText comm = comm >> return ""
 
 doCommand :: Message -> GameState -> DiscordHandler ()
 doCommand m gs = runCommand m gs $
     let (comm, args) = getCommandAndArgs $ messageText m
     in case comm of
-        "setdir" -> setDirection (parseArgs args :: Maybe Direction)
+        "setdir" -> emptyText $ setDirection (parseArgs args :: Maybe Direction)

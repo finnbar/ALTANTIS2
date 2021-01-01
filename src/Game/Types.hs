@@ -11,11 +11,12 @@ import qualified Data.Map as M
 import Data.Text (Text)
 import GHC.Conc (newTVarIO, TVar, STM)
 import Control.Monad.Trans.Reader
+import Control.Monad.Trans.Except
 import Discord.Types
 
 data CommandEnv = CommandEnv { gs :: GameState, message :: Message }
 type Error = Text
-type Command = ReaderT CommandEnv STM (Either Error Text)
+type Command a = ExceptT Error (ReaderT CommandEnv STM) a
 
 data GameState = GS { subs :: TVar (Map Text Submarine), worldMap :: TVar WorldMap, users :: TVar (Map User Text) }
 

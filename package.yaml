@@ -26,6 +26,10 @@ dependencies:
 - text
 - load-env
 - data-default
+- vector
+- transformers
+- containers
+- stm
 
 library:
   source-dirs: src

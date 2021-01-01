@@ -1,6 +1,6 @@
 module Main where
 
-import ALTANTIS2 (doDiscord)
+import ALTANTIS2 (doDiscord, makeGameState)
 
 import Discord
 import Discord.Types
@@ -15,4 +15,5 @@ main :: IO ()
 main = do
     loadEnv
     token <- pack . fromMaybe def <$> lookupEnv "DISCORD_TOKEN"
-    doDiscord token
+    gs <- makeGameState
+    doDiscord token gs

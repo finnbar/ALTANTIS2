@@ -45,6 +45,9 @@ extra-deps:
 - emoji-0.1.0.2
 - load-env-0.2.1.0
 - data-default-0.7.1.1
+- vector-0.12.1.2
+- containers-0.6.2.1
+- stm-2.5.0.0
 
 # Override default flag values for local packages and extra-deps
 # flags: {}

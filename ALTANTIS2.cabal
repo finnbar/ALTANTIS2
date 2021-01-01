@@ -4,16 +4,16 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: d7a39df59b019275103717f9ca6a264a14b72adeb515897991e67df940b8a4b9
+-- hash: a23ff2631a1fc3c7da04ec8c155a9b1b9fd2ea3fde678856a4ccdec059e70496
 
 name:           ALTANTIS2
 version:        0.1.0.0
-description:    Please see the README on GitHub at <https://github.com/githubuser/ALTANTIS2#readme>
-homepage:       https://github.com/githubuser/ALTANTIS2#readme
-bug-reports:    https://github.com/githubuser/ALTANTIS2/issues
-author:         Author name here
-maintainer:     example@example.com
-copyright:      2021 Author name here
+description:    Please see the README on GitHub at <https://github.com/finnbar/ALTANTIS2#readme>
+homepage:       https://github.com/finnbar/ALTANTIS2#readme
+bug-reports:    https://github.com/finnbar/ALTANTIS2/issues
+author:         Finnbar Keating
+maintainer:     finnjkeating@gmail.com
+copyright:      2021 Finnbar Keating
 license:        BSD3
 license-file:   LICENSE
 build-type:     Simple
@@ -23,13 +23,13 @@ extra-source-files:
 
 source-repository head
   type: git
-  location: https://github.com/githubuser/ALTANTIS2
+  location: https://github.com/finnbar/ALTANTIS2
 
 library
   exposed-modules:
+      ALTANTIS2
       DiscordUtils.Arguments
       DiscordUtils.Utils
-      Lib
   other-modules:
       Paths_ALTANTIS2
   hs-source-dirs:
@@ -37,6 +37,7 @@ library
   default-extensions: OverloadedStrings ScopedTypeVariables
   build-depends:
       base >=4.7 && <5
+    , data-default
     , discord-haskell
     , emoji
     , load-env
@@ -53,6 +54,7 @@ executable ALTANTIS2-exe
   build-depends:
       ALTANTIS2
     , base >=4.7 && <5
+    , data-default
     , discord-haskell
     , emoji
     , load-env
@@ -70,6 +72,7 @@ test-suite ALTANTIS2-test
   build-depends:
       ALTANTIS2
     , base >=4.7 && <5
+    , data-default
     , discord-haskell
     , emoji
     , load-env

@@ -9,7 +9,7 @@ import qualified Data.Vector as Vec
 import Data.Map (Map)
 import qualified Data.Map as M
 import Data.Text (Text)
-import GHC.Conc (newTVarIO, TVar, STM)
+import Control.Concurrent.STM (newTVarIO, TVar, STM)
 import Control.Monad.Trans.Reader
 import Control.Monad.Trans.Except
 import Discord.Types

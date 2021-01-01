@@ -8,11 +8,11 @@ import DiscordUtils.Utils
 
 import Discord (DiscordHandler)
 import Discord.Types (Message(..), User)
-import GHC.Conc
 import Control.Monad.IO.Class
 import Data.Text (Text)
 import Control.Monad.Trans.Reader
 import Control.Monad.Trans.Except
+import Control.Concurrent.STM (atomically)
 
 runCommand :: Message -> GameState -> Command Text -> DiscordHandler ()
 runCommand m gs comm = do

@@ -4,7 +4,7 @@ import Game.Types
 
 import Discord.Types
 import Data.Text (Text)
-import GHC.Conc
+import Control.Concurrent.STM
 import qualified Data.Map.Strict as Map
 import Control.Monad.Trans.Class
 import Control.Monad.Reader

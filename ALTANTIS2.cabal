@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 775e8de5ebc8d4cf812b0481653438d8d2ec35e3ebca13b2e12b77dc0deadda7
+-- hash: d7a39df59b019275103717f9ca6a264a14b72adeb515897991e67df940b8a4b9
 
 name:           ALTANTIS2
 version:        0.1.0.0
@@ -27,13 +27,20 @@ source-repository head
 
 library
   exposed-modules:
+      DiscordUtils.Arguments
+      DiscordUtils.Utils
       Lib
   other-modules:
       Paths_ALTANTIS2
   hs-source-dirs:
       src
+  default-extensions: OverloadedStrings ScopedTypeVariables
   build-depends:
       base >=4.7 && <5
+    , discord-haskell
+    , emoji
+    , load-env
+    , text
   default-language: Haskell2010
 
 executable ALTANTIS2-exe
@@ -46,6 +53,10 @@ executable ALTANTIS2-exe
   build-depends:
       ALTANTIS2
     , base >=4.7 && <5
+    , discord-haskell
+    , emoji
+    , load-env
+    , text
   default-language: Haskell2010
 
 test-suite ALTANTIS2-test
@@ -59,4 +70,8 @@ test-suite ALTANTIS2-test
   build-depends:
       ALTANTIS2
     , base >=4.7 && <5
+    , discord-haskell
+    , emoji
+    , load-env
+    , text
   default-language: Haskell2010
